@@ -1,5 +1,22 @@
 #include <stdio.h>
 
+int redondeo(float n);
+int piso(float n);
+int techo(float n);
+
+int main()
+{
+    float n;
+    printf("Ingrese un numero real: ");
+    scanf("%f", &n);
+
+    printf("Redondeo = %d", redondeo(n));
+    printf("\nPiso = %d", piso(n));
+    printf("\nTecho = %d", techo(n));
+
+    return 0;
+}
+
 int redondeo(float n)
 {
     int in = n;
@@ -26,17 +43,4 @@ int techo(float n)
         n++;
     }
     return n;
-}
-
-int main()
-{
-    float n;
-    printf("Ingrese un numero reall: ");
-    scanf("%f", &n);
-
-    printf("Redondeo = %d", redondeo(n));
-    printf("\nPiso = %d", piso(n));
-    printf("\nTecho = %d", techo(n));
-
-    return 0;
 }
