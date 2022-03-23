@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define LEN 100
 #define TERM '\n'
-char reemplazar(char arr[LEN], char find, char rep);
+void reemplazar(char arr[LEN], char find, char rep);
 void leer(char msj[], char arr[]);
 
 int main()
@@ -20,7 +20,7 @@ int main()
     return 0;
 }
 
-char reemplazar(char arr[LEN], char find, char rep)
+void reemplazar(char arr[LEN], char find, char rep)
 {
     for (int i = 0; i < LEN; i++)
     {
