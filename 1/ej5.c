@@ -23,7 +23,7 @@ void cargarArrPNR(int arr[])
     int i = 0;
     while (aux != 0)
     {
-        imprimirArr(arr);
+        printf("Ingrese numero: ");
         scanf("%d", &aux);
         if (estaEnArr(arr, aux))
         {
