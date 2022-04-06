@@ -90,8 +90,9 @@ void imprimirMatText(char mat[F][C])
 
 int lenMatriz(char mat[F][C])
 {
+    char _STERM = '\0';
     int i = 0;
-    while (mat[i][0] != STERM && i < F)
+    while (mat[i][0] != _STERM && i < F)
     {
         i++;
     }
@@ -100,9 +101,10 @@ int lenMatriz(char mat[F][C])
 
 void __strcpy(char dst[C], char src[C])
 {
+    char _STERM = '\0';
     int i = 0;
     char aux = 'c';
-    while (aux != STERM)
+    while (aux != _STERM)
     {
         aux = src[i];
         dst[i] = aux;
@@ -112,11 +114,11 @@ void __strcpy(char dst[C], char src[C])
 
 int __strcmp(char str1[C], char str2[C])
 {
-    
+    char _STERM = '\0';
     int i = 0;
     char aux1 = 'c';
     char aux2 = 'c';
-    while (aux1 != STERM && aux2 != STERM)
+    while (aux1 != _STERM && aux2 != _STERM)
     {
         aux1 = str1[i];
         aux2 = str2[i];
@@ -136,9 +138,9 @@ int __strcmp(char str1[C], char str2[C])
             }
         }
     }
-    if (aux1 == STERM)
+    if (aux1 == _STERM)
     {
-        if (aux2 == STERM)
+        if (aux2 == _STERM)
         {
             return 0;
         }
