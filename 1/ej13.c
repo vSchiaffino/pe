@@ -1,19 +1,27 @@
 #include <stdio.h>
+#include <string.h>
 #define FCABECERAS "cabeceras.txt"
 #define FITEMS "items.txt"
 #define FDATOS "datos.txt"
 #define LENDATOS 8
 void leerArchivoPorRenglones(char mat[][100], char fname[]);
+void intcpy(int dst[LENDATOS], int src[LENDATOS]);
 
 void leerCabeceras(char mat[][100], char fname[]);
 void leerItems(char mat[][100], char fname[]);
 void leerDatos(int mat[][LENDATOS], char fname[]);
 
+void imprimirCuerpo(char items[][100], int datos[][LENDATOS], int lenDatos);
 void imprimirCabecera(char cabeceras[][100]);
 void imprimirTabla(
     char cabeceras[][100],
     char items[][100],
     int datos[][LENDATOS]);
+void ordenarTabla(
+    char items[][100],
+    int datos[][LENDATOS],
+    int columnaOrdenamiento,
+    int esDescendente);
 
 int main()
 {
@@ -23,6 +31,9 @@ int main()
     leerCabeceras(cabeceras, FCABECERAS);
     leerItems(items, FITEMS);
     leerDatos(datos, FDATOS);
+    imprimirTabla(cabeceras, items, datos);
+    printf("---\n");
+    ordenarTabla(items, datos, 6, 1);
     imprimirTabla(cabeceras, items, datos);
 
     return 0;
@@ -82,6 +93,39 @@ void leerArchivoPorRenglones(char mat[][100], char fname[])
     fclose(f);
 }
 
+void ordenarTabla(
+    char items[][100],
+    int datos[][LENDATOS],
+    int columnaOrdenamiento,
+    int esDescendente)
+{
+    int lenItems = 0;
+    char STERM = '\0';
+    while (items[lenItems][0] != STERM)
+    {
+        lenItems++;
+    }
+    for (int i = 0; i < lenItems - 1; i++)
+    {
+        for (int j = i + 1; j < lenItems; j++)
+        {
+            if (
+                esDescendente && (datos[i][columnaOrdenamiento] < datos[j][columnaOrdenamiento]) ||
+                !esDescendente && (datos[i][columnaOrdenamiento] > datos[j][columnaOrdenamiento]))
+            {
+                int aux[LENDATOS];
+                intcpy(aux, datos[i]);
+                intcpy(datos[i], datos[j]);
+                intcpy(datos[j], aux);
+                char saux[100];
+                strcpy(saux, items[i]);
+                strcpy(items[i], items[j]);
+                strcpy(items[j], saux);
+            }
+        }
+    }
+}
+
 void imprimirTabla(
     char cabeceras[][100],
     char items[][100],
@@ -129,5 +173,13 @@ void imprimirCuerpo(char items[][100], int datos[][LENDATOS], int lenDatos)
         }
         printf("\n");
         i++;
+    }
+}
+
+void intcpy(int dst[LENDATOS], int src[LENDATOS])
+{
+    for (int i = 0; i < LENDATOS; i++)
+    {
+        dst[i] = src[i];
     }
 }
