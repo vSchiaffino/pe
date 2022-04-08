@@ -11,6 +11,8 @@ int main()
     int mat[F][C];
     cargarMatNumDeArch(mat, FNAME);
     imprimirMat(mat);
+
+    return 0;
 }
 
 void cargarMatNumDeArch(int mat[F][C], char fname[])

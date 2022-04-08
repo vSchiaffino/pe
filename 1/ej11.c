@@ -27,6 +27,8 @@ int main()
     ordenarMatText(mat);
     printf("------------\n");
     imprimirMatText(mat);
+
+    return 0;
 }
 
 void ordenarMatText(char mat[F][C])

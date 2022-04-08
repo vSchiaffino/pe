@@ -24,6 +24,8 @@ int main()
     leerItems(items, FITEMS);
     leerDatos(datos, FDATOS);
     imprimirTabla(cabeceras, items, datos);
+
+    return 0;
 }
 
 void leerCabeceras(char mat[][100], char fname[])

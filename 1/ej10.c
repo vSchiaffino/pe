@@ -19,6 +19,8 @@ int main()
         return ERRF;
     }
     imprimirMatText(mat);
+
+    return 0;
 }
 
 int cargarMatTexDeArch(char mat[F][C], char fname[])
