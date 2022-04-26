@@ -30,7 +30,7 @@ int main()
 
 float distanciaEntreDosPuntos(Punto punto1, Punto punto2)
 {
-    return sqrtf(pow(punto1.x - punto2.x, 2) + pow(punto1.y - punto2.y, 2));
+    return sqrt(pow(punto1.x - punto2.x, 2) + pow(punto1.y - punto2.y, 2));
 }
 
 Punto pedirPunto(){
