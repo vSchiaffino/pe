@@ -8,14 +8,15 @@ struct s_punto{
 typedef struct s_punto Punto;
 
 Punto pedirPunto();
-float distanciaAlOrigen(Punto punto);
+float distanciaEntreDosPuntos(Punto punto1, Punto punto2);
 
 int main()
 {
+    Punto origen = {0, 0};
     Punto punto1 = pedirPunto();
     Punto punto2 = pedirPunto();
-    float distancia1 = distanciaAlOrigen(punto1);
-    float distancia2 = distanciaAlOrigen(punto2);
+    float distancia1 = distanciaEntreDosPuntos(punto1, origen);
+    float distancia2 = distanciaEntreDosPuntos(punto2, origen);
     if(distancia1 > distancia2)
     {
         printf("El primer punto esta mas lejos del origen\n");
@@ -27,9 +28,9 @@ int main()
     return 0;
 }
 
-float distanciaAlOrigen(Punto punto)
+float distanciaEntreDosPuntos(Punto punto1, Punto punto2)
 {
-    return sqrtf(pow(punto.x, 2) + pow(punto.y, 2));
+    return sqrtf(pow(punto1.x - punto2.x, 2) + pow(punto1.y - punto2.y, 2));
 }
 
 Punto pedirPunto(){
