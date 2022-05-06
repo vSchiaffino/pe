@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void mostrarChar(unsigned char c);
+
 int main()
 {
     unsigned char c;
