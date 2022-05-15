@@ -1,33 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int maxArray(int *arr, int maximo)
+void intercambiar(int *ptr1, int *ptr2)
 {
-    if (*arr == 0)
-        return maximo;
-    if (*arr > maximo)
-        maximo = *arr;
-    return maxArray(arr + 1, maximo);
-}
-
-int *maxArrayPuntero(int *arr, int *maximo)
-{
-    if (*arr == 0)
-        return maximo;
-    if (maximo == NULL || *arr > *maximo)
-        maximo = arr;
-    return maxArrayPuntero(arr + 1, maximo);
+    int aux = *ptr1;
+    *ptr1 = *ptr2;
+    *ptr2 = aux;
 }
 
 int main()
 {
-    int arr[10] = {1, 2, 3, 4, 5, 90, 1, 2, 58, 0};
-    int *pmax = arr + 5;
-    printf("maximo es: %p = %d", pmax, *pmax);
-
-    printf("max = %d\n", maxArray(arr, 0));
-
-    int *p = maxArrayPuntero(arr, NULL);
-    printf("max puntero %p = %d\n", p, *p);
+    int n1, n2;
+    n1 = 1;
+    n2 = 2;
+    printf("%d %d -> ", n1, n2);
+    intercambiar(&n1, &n2);
+    printf("%d %d\n", n1, n2);
     return 0;
 }
