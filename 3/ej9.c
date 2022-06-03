@@ -1,53 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-char *cargarStrDin1()
+char *subcadena(char *p, unsigned int i, unsigned int n)
 {
-    fflush(stdin);
+    // n caracteres + el \0 final
+    char *sub = malloc((n + 1) * sizeof(char));
+    p += i;
+    int cont = 0;
+    while (cont < n)
+    {
+        *(sub + cont) = *p;
+        p++;
+        ++cont;
+    }
+    return sub;
+}
+
+char *leerArch(const char *nomArch)
+{
     char *puntero = malloc(1);
+    FILE *f = fopen(nomArch, "r");
     int i = 0;
     char aux = 'c';
-    while (aux != '\n')
+    while (aux != EOF)
     {
         ++i;
-        aux = getchar();
+        aux = fgetc(f);
         puntero = realloc(puntero, i * sizeof(char));
         puntero[i - 1] = aux;
     }
     puntero[i - 1] = '\0';
+    fclose(f);
     return puntero;
-}
-
-void cargarStrDin2(char **str)
-{
-    char *puntero = cargarStrDin1();
-    *str = puntero;
-}
-
-void escribirArch(const char *file, char *str)
-{
-    FILE *f = fopen(file, "w");
-    fprintf(f, "%s", str);
-    fclose(f);
-}
-
-void imprimirArch(const char *file)
-{
-    FILE *f = fopen(file, "r");
-    while (!feof(f))
-    {
-        char aux = fgetc(f);
-        printf("%c", aux);
-    }
-    fclose(f);
 }
 
 int main()
 {
     char *str = NULL;
-    // str = cargarStrDin1();
-    cargarStrDin2(&str);
-    escribirArch("frase.txt", str);
-    imprimirArch("frase.txt");
+    char *subStr = NULL;
+    int i = 0, n = 7;
+    str = leerArch("frase.txt");
+    subStr = subcadena(str, i, n);
+    printf("Para i = %d y n = %d, Se encontro el substring: %s", i, n, subStr);
+
     return 0;
 }

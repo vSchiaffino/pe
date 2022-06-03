@@ -3,6 +3,7 @@
 
 char *cargarStrDin1()
 {
+    fflush(stdin);
     char *puntero = malloc(1);
     int i = 0;
     char aux = 'c';
@@ -23,11 +24,30 @@ void cargarStrDin2(char **str)
     *str = puntero;
 }
 
+void escribirArch(const char *file, char *str)
+{
+    FILE *f = fopen(file, "w");
+    fprintf(f, "%s", str);
+    fclose(f);
+}
+
+void imprimirArch(const char *file)
+{
+    FILE *f = fopen(file, "r");
+    while (!feof(f))
+    {
+        char aux = fgetc(f);
+        printf("%c", aux);
+    }
+    fclose(f);
+}
+
 int main()
 {
-    char *str = cargarStrDin1();
-    printf("Cargado 1: %s\n", str);
-    char *str2;
-    cargarStrDin2(&str2);
-    printf("Cargado 2: %s\n", str2);
+    char *str = NULL;
+    // str = cargarStrDin1();
+    cargarStrDin2(&str);
+    escribirArch("frase.txt", str);
+    imprimirArch("frase.txt");
+    return 0;
 }
