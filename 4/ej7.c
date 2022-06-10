@@ -23,4 +23,6 @@ int main()
 {
     char *str = "aeioujjjjjjjjhhhhhii";
     printf("%d", contar_vocales(str));
+
+    return 0;
 }

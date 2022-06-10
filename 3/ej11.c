@@ -19,4 +19,6 @@ int main()
     printf("Antes: %d - %d\n", dosint.a, dosint.b);
     intercambiar(&dosint.a, &dosint.b);
     printf("Despues: %d - %d\n", dosint.a, dosint.b);
+
+    return 0;
 }

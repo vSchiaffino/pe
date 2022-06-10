@@ -18,4 +18,6 @@ int main()
     int a = 50;
     int b = 5;
     printf("%d / %d = %d", a, b, cociente(a, b));
+
+    return 0;
 }

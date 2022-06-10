@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #define T 100
 
-int minimo(int* arreglo)
+int minimo(int *arreglo)
 {
-    
 }
 
 int main()
@@ -16,4 +15,6 @@ int main()
     arreglo[3] = 3;
     arreglo[4] = 2;
     arreglo[5] = 9;
+
+    return 0;
 }

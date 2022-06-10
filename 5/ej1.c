@@ -53,4 +53,6 @@ int main()
     pers[3].apellido = "Aguilera";
     pers[3].dni = 225544478;
     imprimirStructInverso(pers, l);
+
+    return 0;
 }

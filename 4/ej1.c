@@ -18,4 +18,6 @@ int main()
     int a = 10;
     int b = 4;
     printf("%d * %d = %d", a, b, producto(a, b));
+
+    return 0;
 }

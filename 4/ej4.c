@@ -27,4 +27,6 @@ int main()
     int arreglo[5] = {5, 2, 3, 4, 5};
     invertir(arreglo, 5);
     imprimir(arreglo, 5);
+
+    return 0;
 }

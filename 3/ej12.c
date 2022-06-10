@@ -107,4 +107,6 @@ int main()
     mostrarFrases(frases);
     guardarFrases(frases);
     printf("termine bien\n");
+
+    return 0;
 }

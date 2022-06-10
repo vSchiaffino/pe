@@ -21,4 +21,6 @@ int main()
 {
     char *str = cargarStrDin();
     printf("Cargado: %s", str);
+
+    return 0;
 }

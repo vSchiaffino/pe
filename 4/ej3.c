@@ -18,4 +18,6 @@ int main()
     int a = 151;
     int b = 3;
     printf("%d %% %d = %d", a, b, resto(a, b));
+
+    return 0;
 }
