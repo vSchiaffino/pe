@@ -8,74 +8,70 @@ typedef struct s_persona
     char *apellido;
 } Persona;
 
-typedef struct s_lista
+struct s_nodo
 {
-    int len;
-    Persona *array;
-} Lista;
+    Persona valor;
+    struct s_nodo *next;
+};
+typedef struct s_nodo Nodo;
 
-void insert(Lista *lista, int posicion, Persona persona)
+void append(Nodo **nodo, Persona valor)
 {
-    if (lista->len == 0)
+    if (*nodo == NULL)
     {
-        lista->array = malloc(sizeof(Persona) * 1);
+        *nodo = malloc(sizeof(Persona));
+        (*nodo)->valor = valor;
+        (*nodo)->next = NULL;
     }
     else
     {
-        lista->array = realloc(lista->array, sizeof(Persona) * (lista->len + 1));
+        append(&((*nodo)->next), valor);
     }
-    Persona aux = persona;
-    for (int i = posicion; i < lista->len + 1; i++)
-    {
-        Persona aux2 = lista->array[i];
-        lista->array[i] = aux;
-        aux = aux2;
-    }
-
-    lista->len++;
 }
 
-void insertarOrdenado(Lista *lista, Persona persona)
+void insertOrdenado(Nodo **nodo, Persona valor)
 {
-    int i = 0;
-    while (i < lista->len && lista->array[i].dni < persona.dni)
+    if (*nodo == NULL || (*nodo)->valor.dni > valor.dni)
     {
-        i++;
+        Nodo *nuevoNodo = malloc(sizeof(Nodo));
+        nuevoNodo->next = *nodo;
+        nuevoNodo->valor = valor;
+        *nodo = nuevoNodo;
     }
-    insert(lista, i, persona);
+    else
+    {
+        insertOrdenado(&(*nodo)->next, valor);
+    }
 }
 
-void mostrarLista(Lista lista)
+void imprimirLista(Nodo *nodo)
 {
-    for (int i = 0; i < lista.len; i++)
+    if (nodo != NULL)
     {
-        Persona p = lista.array[i];
-        printf("%s,%s,%d\n", p.nombre, p.apellido, p.dni);
+        printf("%d,", nodo->valor.dni);
+        imprimirLista(nodo->next);
     }
 }
 
 int main()
 {
-    Lista lista;
-    lista.len = 0;
-    Persona pers[4];
-    pers[0].nombre = "Valentin";
-    pers[0].apellido = "SChiaffino";
-    pers[0].dni = 43725441;
-    pers[1].nombre = "Maximo";
-    pers[1].apellido = "Cosetti";
-    pers[1].dni = 55887789;
-    pers[2].nombre = "Olga";
-    pers[2].apellido = "Puchettini";
-    pers[2].dni = 2255665;
-    pers[3].nombre = "Cristina";
-    pers[3].apellido = "Aguilera";
-    pers[3].dni = 225544478;
-    insertarOrdenado(&lista, pers[0]);
-    insertarOrdenado(&lista, pers[1]);
-    insertarOrdenado(&lista, pers[2]);
-    insertarOrdenado(&lista, pers[3]);
-    mostrarLista(lista);
-    printf("salgo bien");
+    Nodo *lista = NULL;
+    Persona p;
+    p.dni = 43725441;
+    insertOrdenado(&lista, p);
+    p.dni = 33725441;
+    insertOrdenado(&lista, p);
+    p.dni = 13725441;
+    insertOrdenado(&lista, p);
+    p.dni = 53725441;
+    insertOrdenado(&lista, p);
+    p.dni = 83725441;
+    insertOrdenado(&lista, p);
+    p.dni = 23725441;
+    insertOrdenado(&lista, p);
+
+
+    imprimirLista(lista);
+
     return 0;
 }
