@@ -8,37 +8,51 @@ typedef struct s_persona
     char *apellido;
 } Persona;
 
-void imprimirArrayInverso(int *arr, int l)
+typedef struct s_nodo
 {
-    printf("%d,", arr[l - 1]);
-    if (l != 1)
-    {
-        imprimirArrayInverso(arr, l - 1);
+    Persona valor;
+    struct s_nodo* next;
+} Nodo;
+
+typedef struct s_nodo_int
+{
+    int valor;
+    struct s_nodo_int* next;
+} Nodo_int;
+
+void imprimirListaInverso(Nodo_int nodo)
+{
+    if(nodo.next != NULL){
+        imprimirListaInverso(*nodo.next);
     }
-    else
-    {
-        printf("\n");
-    }
+    printf("%d,", nodo.valor);
 }
 
-void imprimirStructInverso(Persona *arr, int l)
+void imprimirListaStructInverso(Nodo nodo)
 {
-    printf("%s,%s,%d\n", arr[l - 1].nombre, arr[l - 1].apellido, arr[l - 1].dni);
-    if (l != 1)
-    {
-        imprimirStructInverso(arr, l - 1);
+    if(nodo.next != NULL){
+        imprimirListaStructInverso(*nodo.next);
     }
+    printf("%s,%s,%d\n", nodo.valor.nombre, nodo.valor.apellido, nodo.valor.dni);
 }
 
 int main()
 {
-    int l = 4;
-    int array[4];
-    array[0] = 14;
-    array[1] = 17;
-    array[2] = 20;
-    array[3] = 23;
-    imprimirArrayInverso(array, l);
+    Nodo_int cuarto;
+    cuarto.valor = 23;
+    cuarto.next = NULL;
+    Nodo_int tercero;
+    tercero.valor = 20;
+    tercero.next = &cuarto;
+    Nodo_int segundo;
+    segundo.valor = 17;
+    segundo.next = &tercero;
+    Nodo_int primero;
+    primero.valor = 14;
+    primero.next = &segundo;
+    imprimirListaInverso(primero);
+    printf("\n\n");
+
     Persona pers[4];
     pers[0].nombre = "Valentin";
     pers[0].apellido = "SChiaffino";
@@ -52,7 +66,20 @@ int main()
     pers[3].nombre = "Cristina";
     pers[3].apellido = "Aguilera";
     pers[3].dni = 225544478;
-    imprimirStructInverso(pers, l);
+
+    Nodo n_cuarto;
+    n_cuarto.valor = pers[3];
+    n_cuarto.next = NULL;
+    Nodo n_tercero;
+    n_tercero.valor = pers[2];
+    n_tercero.next = &n_cuarto;
+    Nodo n_segundo;
+    n_segundo.valor = pers[1];
+    n_segundo.next = &n_tercero;
+    Nodo n_primero;
+    n_primero.valor = pers[0];
+    n_primero.next = &n_segundo;
+    imprimirListaStructInverso(n_primero);
 
     return 0;
 }
